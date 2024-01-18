@@ -11,12 +11,14 @@ const page = () => {
     setTitle('')
     console.log(taskList)
   }
+  if (taskList.length>0){
   let renderTask = <h2>No work yet</h2>
   renderTask = taskList.map((t,i)=>{
-    return <div>
+    return <div className='flex justify-center'> 
       <h5>{t.title}</h5>
     </div>
   })
+}
 
   
 
@@ -34,7 +36,7 @@ const page = () => {
     </form>
    
     </div>
-    <div className=' text-center p-8 bg-cyan-300'>
+    <div className=' text-center p-8 bg-yellow-100'>
       <ul>
         {renderTask}
       </ul>
