@@ -3,16 +3,27 @@ import React,{ useState } from 'react'
 
 const page = () => {
   const [title, setTitle] = useState('')
+  const [taskList,setTask] = useState([])
 
   const submitHandle = (e) =>{
-    e.preventDefault();
+    e.preventDefault()
+    setTask([...taskList,{title}])
     setTitle('')
+    console.log(taskList)
   }
+  let renderTask = <h2>No work yet</h2>
+  renderTask = taskList.map((t,i)=>{
+    return <div>
+      <h5>{t.title}</h5>
+    </div>
+  })
+
+  
 
   return (
     <>
     <h1 className='bg-black text-white font-bold text-center p-10  text-5xl'>To do list</h1>
-    <div className='h-screen flex justify-center items-center flex-grow '>
+    <div className=' flex justify-center  '>
     <form onSubmit={submitHandle}> 
     <input placeholder='What do you wanna do ' 
     className=' px-20 py-3 text-2xl  text-amber-900 border-2 m-5' 
@@ -21,7 +32,14 @@ const page = () => {
     }}></input>
     <button type='submit' className=' bg-black text-yellow-100 px-6 py-1 text-2xl font-bold rounded m-5'>Add</button>
     </form>
+   
     </div>
+    <div className=' text-center p-8 bg-cyan-300'>
+      <ul>
+        {renderTask}
+      </ul>
+    </div>
+
     </>
     
   )
